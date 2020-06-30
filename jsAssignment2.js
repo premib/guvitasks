@@ -50,15 +50,8 @@ console.log(gte(3, 1))
 //keys
 let keys= (obj, type)=>{
     let final= []
-    if(obj instanceof Object){
-        for(let key in obj){
-            final.push(key)
-        }
-    }
-    else if(typeof obj == "string"){
-        for(let i= 0; i< obj.length; i++){
-            final.push(i)
-        }
+    for(let key in obj){
+        final.push(key)
     }
     return final
 }
@@ -69,18 +62,10 @@ console.log(keys("hi"))
 //value
 let values= (obj)=>{
         let final= []
-        if(obj instanceof Object){
-            for(let key in obj){
-                final.push(obj[key])
-            }
-        }
-        else if(typeof obj == "string"){
-            for(let i= 0; i< obj.length; i++){
-                final.push(obj[i])
-            }
+        for(let key in obj){
+            final.push(obj[key])
         }
         return final
-
 }
 console.log(values({name:"prem",age:21}))
 console.log(values("hi"))
@@ -88,7 +73,7 @@ console.log(values("hi"))
 //camecase
 let camelCase= (strs)=>{ 
     strs= strs.trim()
-    strs=strs.replace(/[-_]*/, "")
+    strs= strs.replace(/[-_]*/, "")
     strs= strs.replace(/[_-]*$/, "")
     let final= []
     let temp= ""
@@ -108,8 +93,8 @@ let camelCase= (strs)=>{
 console.log(camelCase("  -_foo-bar-kk-_"))
 
 //endswith
-let endswith= (str, target, position=1)=>{ return str[str.length-position] === target }
-console.log(endswith("abc", "c"))
+let endswith= (str, target, position=1)=>{ return str.slice(str.length-position, str.length).includes(target) }
+console.log(endswith("abc", "b", 2))
 
 //tail
 let tail=arr=>{ return arr.slice(1, arr.length) }
@@ -118,12 +103,14 @@ console.log(tail([1,2,3,4,5,6]))
 //union
 let union=(...arr)=>{
     let final= {}
-    for(let i of arr){
-        for(let j of i){
-            final[j]= 0
-        }
-    }
+    arr.forEach((inner_arr)=>{
+        inner_arr.forEach((element)=>{
+            final[element]= null
+        })
+    })
     return keys(final)
 }
 console.log(union([1,2,3],[2,3,4]))
+
+
 
