@@ -108,8 +108,8 @@ let camelCase= (strs)=>{
 console.log(camelCase("  -_foo-bar-kk-_"))
 
 //endswith
-let endswith= (str, target, position=1)=>{ return str.slice(str.length-position, str.length).includes(target) }
-console.log(endswith("abc", "b", 2))
+let endswith= (str, target, position=1)=>{ return str[str.length-position] === target }
+console.log(endswith("abc", "c"))
 
 //tail
 let tail=arr=>{ return arr.slice(1, arr.length) }
